@@ -1,7 +1,7 @@
 MAKEFLAGS := --jobs=1
 PYTHON := python3
 PIP := pip3
-VERSION := $(shell git describe --tag)
+VERSION := mvp1
 COMMIT := $(shell git rev-parse --short HEAD)
 
 .PHONY:
@@ -91,8 +91,7 @@ update: web-deps-update cli-deps-update docs-deps-update
 docker-dev:
 	docker build \
 		--file ./Dockerfile-build \
-		--tag binwiederhier/ntfy:$(VERSION) \
-		--tag binwiederhier/ntfy:dev \
+		--tag ntfy:$(VERSION) \
 		--build-arg VERSION=$(VERSION) \
 		--build-arg COMMIT=$(COMMIT) \
 		./

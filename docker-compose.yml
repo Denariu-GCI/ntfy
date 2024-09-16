@@ -1,17 +1,16 @@
 version: "2.1"
 services:
   ntfy:
-    image: binwiederhier/ntfy
+    image: 192.168.1.101:5000/ntfy:mvp1
     container_name: ntfy
     command:
       - serve
     environment:
       - TZ=UTC    # optional: Change to your desired timezone
-    user: UID:GID # optional: Set custom user/group or uid/gid
     volumes:
-      - /var/cache/ntfy:/var/cache/ntfy
-      - /etc/ntfy:/etc/ntfy
+      - ./localcache:/var/cache/ntfy
+      - ./localetc:/etc/ntfy
     ports:
-      - 80:80
+      - 8001:80
     restart: unless-stopped
 
